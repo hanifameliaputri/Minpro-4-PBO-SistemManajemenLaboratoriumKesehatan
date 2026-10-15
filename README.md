@@ -211,24 +211,32 @@ Menu ini berisi lima fitur: tambah pasien, lihat semua pasien, cari pasien berda
 
 <img height="362" alt="image" src="https://github.com/user-attachments/assets/8f67a2b8-601c-4a31-8adb-27f4b56ea682" />
 
+Fitur ini digunakan untuk memasukkan data pasien baru, meliputi nama, umur, jenis kelamin, dan keluhan. Sistem membuat ID pasien secara otomatis dan menyimpan data ke database melalui PasienDAO.
 
 **Lihat semua pasien.**
 
 <img height="227" alt="image" src="https://github.com/user-attachments/assets/d575566f-e358-43ab-9492-11e1bf579da4" />
 
+Fitur ini menampilkan seluruh data pasien yang tersimpan di database, sehingga pengguna dapat melihat informasi pasien yang telah terdaftar.
+
 **Cari pasien berdasarkan ID.**
 
 <img height="287" alt="image" src="https://github.com/user-attachments/assets/cd6f3aaf-fc46-4b96-8bed-0616d139dfb3" />
 
+Fitur ini digunakan untuk mencari pasien berdasarkan ID tertentu. Jika pasien ditemukan, sistem menampilkan informasi lengkap pasien, termasuk nama, umur, jenis kelamin, dan keluhan.
+
 **Ubah pasien.** Program meminta ID pasien, lalu menampilkan nilai lama di dalam tanda kurung pada setiap kolom. Menekan Enter mempertahankan nilai lama. Data diperbarui lewat `PasienDAO.ubah()` (perintah `UPDATE` dengan Prepared Statement).
 
 <img height="493" alt="image" src="https://github.com/user-attachments/assets/893aa2dc-a48a-42f8-a50d-67e2acb2b269" />
+
+Fitur ini memungkinkan pengguna memperbarui data pasien yang sudah tersimpan. Sistem menampilkan nilai lama sebagai referensi, dan pengguna dapat menekan Enter untuk mempertahankan nilai tersebut. Perubahan disimpan menggunakan method PasienDAO.ubah() dengan perintah SQL UPDATE dan PreparedStatement.
 
 
 **Hapus pasien.**
 
 <img height="407" alt="image" src="https://github.com/user-attachments/assets/b996d0d2-b7fe-4965-812d-d258442d149b" />
 
+Fitur ini digunakan untuk menghapus data pasien berdasarkan ID. Namun, pasien yang masih memiliki hasil pemeriksaan tidak dapat dihapus karena terdapat relasi foreign key pada tabel hasil_pemeriksaan. Sistem menampilkan pesan penolakan agar program tetap berjalan.
 
 **Catatan hapus pasien.** Pasien yang sudah memiliki hasil pemeriksaan tidak dapat dihapus karena ada *foreign key* di tabel `hasil_pemeriksaan`. Program menampilkan pesan penolakan dan tidak berhenti.
 
@@ -245,25 +253,33 @@ Menu ini digunakan untuk menambah **Analis**, menambah **Dokter**, melihat semua
 
 <img height="531" alt="image" src="https://github.com/user-attachments/assets/df0b8ed2-03ec-479f-bb5f-61f53307593d" />
 
+Fitur ini digunakan untuk menambahkan petugas dengan jenis Analis. Pengguna memasukkan data petugas dan informasi spesialisasi yang diperlukan. Data kemudian disimpan menggunakan ORM melalui PetugasOrmDAO.
+
 
 **Tambah dokter.**
 
 <img height="580" alt="image" src="https://github.com/user-attachments/assets/5e50a3a0-3545-4fa1-865c-fdf77d5b1528" />
 
+Fitur ini digunakan untuk menambahkan petugas dengan jenis Dokter. Selain data umum seperti nama, umur, dan jenis kelamin, pengguna juga memasukkan nomor STR sebagai identitas dokter.
 
 **Lihat semua petugas.** Pada tampilan ini terlihat hasil **overriding** dan **polymorphism**: `Analis` menampilkan spesialisasi, sedangkan `Dokter` menampilkan nomor STR. Baris kedua (umur dan jenis kelamin) muncul karena `tampilkanInfo(true)` dipanggil (overloading). Penjelasan lengkapnya ada di [bagian 5](#5-penerapan-polymorphism-dan-abstraction).
 
 <img height="272" alt="image" src="https://github.com/user-attachments/assets/b37f56ad-129a-4bac-addf-8f3c6ffd65b5" />
 
+Fitur ini menampilkan seluruh data Analis dan Dokter yang tersimpan di database. Perbedaan informasi yang ditampilkan menunjukkan penerapan polymorphism, yaitu Analis menampilkan spesialisasinya, sedangkan Dokter menampilkan nomor STR. Method tampilkanInfo(true) juga digunakan untuk menampilkan informasi tambahan.
+
 **Ubah petugas.** Program meminta ID petugas, lalu menampilkan nilai lama pada tiap kolom (nama, umur, jenis kelamin, dan No. STR untuk Dokter atau spesialisasi untuk Analis). Menekan Enter mempertahankan nilai lama. Perubahan disimpan dengan `em.merge()` di `PetugasOrmDAO`.
 
 <img height="597" alt="image" src="https://github.com/user-attachments/assets/d3b97c48-6cc9-429c-9666-7556bd6f4acc" />
+
+Fitur ini digunakan untuk memperbarui data petugas berdasarkan ID. Sistem menampilkan nilai lama agar pengguna dapat menentukan data yang ingin diubah. Perubahan disimpan menggunakan method em.merge() melalui ORM.
 
 
 **Hapus petugas.** Petugas dihapus berdasarkan ID.
 
 <img height="430" alt="image" src="https://github.com/user-attachments/assets/85389fbb-c553-4ac9-bbf3-730aa6147cc3" />
 
+ Fitur ini digunakan untuk menghapus data petugas berdasarkan ID melalui PetugasOrmDAO.
 
 ### Menu 4 - Kelola Pemeriksaan
 
@@ -275,22 +291,32 @@ Menu ini berisi lima fitur: tambah, lihat semua, cari, ubah (nama dan biaya), da
 
 <img height="235" alt="image" src="https://github.com/user-attachments/assets/028af314-d33f-4a26-bd0b-d13f0387249e" />
 
+Fitur ini digunakan untuk menambahkan jenis pemeriksaan baru dengan memasukkan nama pemeriksaan dan biaya. Data pemeriksaan kemudian disimpan ke database menggunakan JDBC melalui PemeriksaanDAO.
 
 **Lihat semua pemeriksaan.**
 
 <img height="285" alt="image" src="https://github.com/user-attachments/assets/0ea4fc4d-7506-4def-a09f-6de12af46a4d" />
 
+Fitur ini menampilkan seluruh jenis pemeriksaan beserta informasi yang tersimpan, sehingga pengguna dapat mengetahui pemeriksaan yang tersedia.
+
 **Cari pemeriksaan.**
 
 <img height="200" alt="image" src="https://github.com/user-attachments/assets/de3e8188-d2e5-40f0-8745-632828846ea9" />
+
+Fitur ini digunakan untuk menemukan data pemeriksaan berdasarkan ID agar informasi pemeriksaan tertentu dapat dilihat dengan lebih mudah.
+
 
 **Ubah pemeriksaan.** Pada fitur ubah, program menampilkan nilai yang sedang tersimpan di dalam tanda kurung. Pengguna cukup **menekan Enter** jika tidak ingin mengubah data tersebut, sehingga nilai lama dipertahankan.
 
 <img width="551" height="468" alt="image" src="https://github.com/user-attachments/assets/fee5fc23-c03b-4808-8122-6a1397f49a1e" />
 
+Fitur ini memungkinkan pengguna memperbarui nama dan biaya pemeriksaan. Nilai lama ditampilkan sebagai referensi, dan pengguna dapat menekan Enter untuk mempertahankannya. Perubahan disimpan ke database melalui PemeriksaanDAO.
+
 **Hapus pemeriksaan.**
 
 <img width="520" height="377" alt="image" src="https://github.com/user-attachments/assets/981aed27-1654-480f-8abe-d30629280db8" />
+
+Fitur ini digunakan untuk menghapus data pemeriksaan berdasarkan ID. Sistem menjalankan proses penghapusan melalui PemeriksaanDAO sesuai aturan relasi data pada database.
 
 
 ### Menu 5 - Kelola Hasil Pemeriksaan
@@ -315,17 +341,21 @@ Seluruh operasi pada menu ini memakai **ORM (Hibernate)** lewat `HasilPemeriksaa
 
 <img height="307" alt="image" src="https://github.com/user-attachments/assets/1f3493b5-8c6d-48be-b3b2-010faebdcd5c" />
 
-
+Fitur ini digunakan untuk memasukkan hasil pemeriksaan pasien dan statusnya, yaitu Normal atau Tidak Normal. Sebelum memasukkan hasil, pengguna perlu melakukan pendaftaran pemeriksaan melalui Menu 1. Sistem memeriksa ID pasien, pemeriksaan, dan petugas sebelum menyimpan hasil dengan ID otomatis. Data hasil pemeriksaan disimpan menggunakan ORM melalui HasilPemeriksaanOrmDAO.
 
 **Lihat semua hasil.**
 
 <img height="245" alt="image" src="https://github.com/user-attachments/assets/1affbd3d-bbad-4642-829f-2c4cb24850bc" />
+
+Fitur ini menampilkan seluruh hasil pemeriksaan yang tersimpan di database. Informasi yang ditampilkan mencakup nama pasien, jenis pemeriksaan, nama petugas, hasil pemeriksaan, dan statusnya agar data lebih mudah dipahami.
 
 
 
 **Lihat riwayat hasil per pasien.**
 
 <img height="297" alt="image" src="https://github.com/user-attachments/assets/4f0eb784-8111-48d6-b421-0e98de128c84" />
+
+Fitur ini digunakan untuk melihat riwayat pemeriksaan pasien tertentu dengan memasukkan ID pasien. Sistem menampilkan hasil-hasil pemeriksaan yang berkaitan dengan pasien tersebut.
 
 
 
