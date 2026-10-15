@@ -262,7 +262,7 @@ Fitur ini digunakan untuk menambahkan petugas dengan jenis Analis. Pengguna mema
 
 Fitur ini digunakan untuk menambahkan petugas dengan jenis Dokter. Selain data umum seperti nama, umur, dan jenis kelamin, pengguna juga memasukkan nomor STR sebagai identitas dokter.
 
-**Lihat semua petugas.** Pada tampilan ini terlihat hasil **overriding** dan **polymorphism**: `Analis` menampilkan spesialisasi, sedangkan `Dokter` menampilkan nomor STR. Baris kedua (umur dan jenis kelamin) muncul karena `tampilkanInfo(true)` dipanggil (overloading). Penjelasan lengkapnya ada di [bagian 5](#5-penerapan-polymorphism-dan-abstraction).
+**Lihat semua petugas.** Pada tampilan ini terlihat hasil **overriding** dan **polymorphism**: `Analis` menampilkan spesialisasi, sedangkan `Dokter` menampilkan nomor STR. Baris kedua (umur dan jenis kelamin) muncul karena `tampilkanInfo(true)` dipanggil (overloading). Penjelasan lengkapnya ada di [Bagian 6 — Penerapan Polymorphism dan Abstraction](#6-penerapan-polymorphism-dan-abstraction).
 
 <img height="272" alt="image" src="https://github.com/user-attachments/assets/b37f56ad-129a-4bac-addf-8f3c6ffd65b5" />
 
