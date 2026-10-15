@@ -1,4 +1,4 @@
-<img width="670" height="287" alt="image" src="https://github.com/user-attachments/assets/38708095-866c-4699-ba87-0f5e771836c8" /># Minpro-4-PBO-SistemManajemenLaboratoriumKesehatan
+# Minpro-4-PBO-SistemManajemenLaboratoriumKesehatan
 
 **Nama:** Hanif Amelia Putri  
 **Kelas:** B  
@@ -524,6 +524,7 @@ Koneksi database dikelola melalui `DatabaseConnection.java`.
 <img height="287" alt="image" src="https://github.com/user-attachments/assets/7b366d6f-1d7a-4d9f-811a-d3fa55f27c8f" />
 
 
+
 **Penjelasan:**
 
 Method `getConnection()` menyediakan koneksi ke database MySQL. Koneksi tersebut kemudian digunakan oleh DAO untuk menjalankan perintah SQL.
@@ -584,21 +585,8 @@ ORM digunakan untuk mengelola data petugas serta hasil pemeriksaan. Sementara it
 
 Contoh pada `Petugas.java`:
 
-```java
-@Entity
-@Table(name = "petugas")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-        name = "tipe_petugas",
-        discriminatorType = DiscriminatorType.STRING
-)
-public abstract class Petugas implements Identitas {
+<img width="932" height="217" alt="image" src="https://github.com/user-attachments/assets/1486e3d7-180e-47c2-a8be-550239f8a663" />
 
-    @Id
-    @Column(name = "id_petugas")
-    private String id;
-}
-```
 
 **Penjelasan:**
 
@@ -615,31 +603,13 @@ Anotasi tersebut memungkinkan Hibernate memetakan objek Java ke struktur tabel d
 
 Contoh pada `OrmDAO.java`:
 
-```java
-@Override
-public void tambah(T objek) throws SQLException {
-    jalankan(true, em -> {
-        em.persist(objek);
-        return null;
-    });
-}
-```
+<img width="607" height="187" alt="image" src="https://github.com/user-attachments/assets/f1a37db0-6e98-4c08-8725-cb10dcdf8918" />
+
 
 Contoh untuk membaca seluruh data:
 
-```java
-@Override
-public List<T> semua() throws SQLException {
+<img height="261" alt="image" src="https://github.com/user-attachments/assets/628fdc1a-b334-47c8-bb4d-2d5ed9bc8065" />
 
-    String jpql = "SELECT e FROM " + namaEntity + " e "
-            + "ORDER BY length(e." + atributId + "), e." + atributId;
-
-    return jalankan(
-            false,
-            em -> em.createQuery(jpql, kelas).getResultList()
-    );
-}
-```
 
 **Penjelasan:**
 
@@ -655,9 +625,8 @@ Pada operasi penulisan, transaksi dimulai sebelum perubahan dilakukan dan di-com
 
 Konfigurasi ORM disimpan pada file:
 
-```text
-src/main/resources/META-INF/persistence.xml
-```
+<img height="237" alt="image" src="https://github.com/user-attachments/assets/c6219090-4041-486e-bf1e-12f157ab9212" />
+
 
 File tersebut digunakan untuk mengatur persistence unit, koneksi database, dan konfigurasi provider JPA/Hibernate.
 
@@ -685,24 +654,12 @@ Database yang digunakan bernama `laboratorium_kesehatan`.
 
 File SQL yang digunakan dalam project:
 
-```text
-database/laboratorium_kesehatan.sql
-```
+<img height="227" alt="image" src="https://github.com/user-attachments/assets/708a0d62-8aca-4024-b3e5-5f9f651f3199" />
+
 
 File tersebut berisi struktur database dan dummy data awal yang dimasukkan langsung melalui SQL, bukan melalui kode Java.
 
 Dummy data diperlukan agar ketika program pertama kali dijalankan, fitur baca data dapat langsung menampilkan data yang tersedia.
-
-### Cara Menggunakan File SQL
-
-1. Jalankan MySQL melalui XAMPP atau layanan database yang digunakan.
-2. Buka phpMyAdmin atau aplikasi pengelola database lainnya.
-3. Import file `database/laboratorium_kesehatan.sql`.
-4. Pastikan database dan tabel berhasil dibuat.
-5. Periksa konfigurasi koneksi pada `DatabaseConnection.java` dan `persistence.xml`.
-6. Jalankan program melalui `Main.java`.
-
-**Catatan:** Nama tabel, kolom, tipe data, primary key, foreign key, dan dummy data di file SQL harus sesuai dengan kebutuhan kode JDBC dan pemetaan entity Hibernate.
 
 ---
 
