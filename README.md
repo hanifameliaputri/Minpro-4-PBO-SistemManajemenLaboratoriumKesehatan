@@ -33,13 +33,6 @@ Seluruh data disimpan di database MySQL `laboratorium_kesehatan`. File struktur 
 
 Satu alur seperti *Pendaftaran Pemeriksaan* memakai JDBC (membaca pasien dan pemeriksaan) sekaligus ORM (membaca petugas dan menyimpan hasil).
 
-### Cara Menjalankan Program
-
-1. Jalankan MySQL (misalnya lewat XAMPP).
-2. Import file `database/laboratorium_kesehatan.sql` lewat phpMyAdmin (tab *Import*), atau lewat terminal: `mysql -u root < database/laboratorium_kesehatan.sql`. File ini membuat database, tabel, dan dummy data.
-3. Jika user atau password MySQL berbeda dari default (`root`, password kosong), sesuaikan di `koneksi/DatabaseConnection.java` dan `src/main/resources/META-INF/persistence.xml`.
-4. Jalankan `Main.Main` (NetBeans, atau `mvn compile exec:java`). Dibutuhkan JDK 21 dan koneksi internet saat build pertama untuk mengunduh dependensi Maven (MySQL Connector dan Hibernate).
-5. Setelah program berjalan, menu *Lihat Semua* langsung menampilkan dummy data dari database.
 
 ---
 
@@ -148,7 +141,8 @@ controller.jalankanProgram(scanner)
 
 Tampilan menu utama saat program pertama kali dijalankan:
 
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/e08d72bc-32c8-4a46-bfd7-ce88df167df1" />
+<img height="250" alt="image" src="https://github.com/user-attachments/assets/3eeed483-5c34-462d-8a66-2bc57f5b6f42" />
+
 
 ### Menu 1 - Pendaftaran Pemeriksaan
 
@@ -177,7 +171,7 @@ Data pendaftaran terakhir (hasil pembacaan dari database) disimpan pada tiga atr
 
 **Pendaftaran dengan pasien baru:**
 
-<img width="842" height="701" alt="image" src="https://github.com/user-attachments/assets/716efbfe-6b34-484b-851c-db21cb17e02d" />
+<img height="635" alt="image" src="https://github.com/user-attachments/assets/10019c71-5444-445b-9946-008a643be269" />
 
 
 Penjelasan alur pada gambar di atas:
@@ -190,11 +184,12 @@ Penjelasan alur pada gambar di atas:
 
 **Konfirmasi pendaftaran** setelah semua data dipilih:
 
-<img height="215" alt="image" src="https://github.com/user-attachments/assets/6221e7de-250e-428c-8675-93c7998378e2" />
+<img height="200" alt="image" src="https://github.com/user-attachments/assets/3e0b6305-a361-409c-ab88-450e93848f93" />
+
 
 **Pendaftaran dengan pasien yang sudah terdaftar:**
 
-<img width="682" height="657" alt="image" src="https://github.com/user-attachments/assets/e8bf9e65-f8b2-4b0a-90e1-397efe415fdc" />
+<img height="762" alt="image" src="https://github.com/user-attachments/assets/5916471f-85e3-4c11-ac15-6e47076eb03d" />
 
 
 Penjelasan alur pada gambar di atas:
@@ -209,101 +204,92 @@ Penjelasan alur pada gambar di atas:
 
 Menu ini berisi lima fitur: tambah pasien, lihat semua pasien, cari pasien berdasarkan ID (ditampilkan lengkap dengan umur, jenis kelamin, dan keluhan), ubah pasien, dan hapus pasien. Seluruh operasi memakai **JDBC** lewat `PasienDAO`.
 
-<img height="205" alt="image" src="https://github.com/user-attachments/assets/8bf91a83-2c9f-47aa-8841-f9337e5d3e0c" />
+<img height="217" alt="image" src="https://github.com/user-attachments/assets/62426cfe-ce5f-4cdb-a35a-ed96f7841d32" />
 
 **Tambah pasien.** 
 
-<img height="202" alt="image" src="https://github.com/user-attachments/assets/2128553d-56bd-40a2-b5dd-ea49f3dd3ca8" />
+<img height="362" alt="image" src="https://github.com/user-attachments/assets/8f67a2b8-601c-4a31-8adb-27f4b56ea682" />
 
 
 **Lihat semua pasien.**
 
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/e69c3b35-7371-4439-b58e-ac83c7d6180a" />
+<img height="227" alt="image" src="https://github.com/user-attachments/assets/d575566f-e358-43ab-9492-11e1bf579da4" />
 
 **Cari pasien berdasarkan ID.**
 
-<img height="220" alt="image" src="https://github.com/user-attachments/assets/a63b2cdb-bf74-4d28-b62b-39b92a2b11d3" />
-
-**Hapus pasien.**
-
-<img height="203" alt="image" src="https://github.com/user-attachments/assets/0922ac9e-a677-4687-8b1b-758f83c2cd66" />
-
+<img height="287" alt="image" src="https://github.com/user-attachments/assets/cd6f3aaf-fc46-4b96-8bed-0616d139dfb3" />
 
 **Ubah pasien.** Program meminta ID pasien, lalu menampilkan nilai lama di dalam tanda kurung pada setiap kolom. Menekan Enter mempertahankan nilai lama. Data diperbarui lewat `PasienDAO.ubah()` (perintah `UPDATE` dengan Prepared Statement).
 
-```text
-Masukkan ID Pasien yang ingin diubah: P1
-Tekan Enter saja jika tidak ingin mengubah data tersebut.
-Nama Baru (Aulia Ashylla P): [Enter]
-Umur Baru (19): 20
-Jenis Kelamin Baru (Perempuan): [Enter]
-Keluhan Baru (Demam dan batuk sejak 3 hari): [Enter]
-Pasien berhasil diubah.
-```
+<img height="493" alt="image" src="https://github.com/user-attachments/assets/893aa2dc-a48a-42f8-a50d-67e2acb2b269" />
+
+
+**Hapus pasien.**
+
+<img height="407" alt="image" src="https://github.com/user-attachments/assets/b996d0d2-b7fe-4965-812d-d258442d149b" />
+
 
 **Catatan hapus pasien.** Pasien yang sudah memiliki hasil pemeriksaan tidak dapat dihapus karena ada *foreign key* di tabel `hasil_pemeriksaan`. Program menampilkan pesan penolakan dan tidak berhenti.
+
+<img height="283" alt="image" src="https://github.com/user-attachments/assets/05eea6e9-a511-4b7f-a7c4-5ba387117300" />
+
 
 ### Menu 3 - Kelola Petugas
 
 Menu ini digunakan untuk menambah **Analis**, menambah **Dokter**, melihat semua petugas, mengubah petugas, dan menghapus petugas. Seluruh operasi memakai **ORM (Hibernate)** lewat `PetugasOrmDAO`. Objek `Analis` dan `Dokter` disimpan di satu tabel `petugas` dan dibaca sebagai `List<Petugas>`.
 
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/f894cbeb-39ae-4cf6-965c-41068a27e47f" />
+<img height="205" alt="image" src="https://github.com/user-attachments/assets/aaaf5637-c853-4e1d-8c01-fa24f29880aa" />
 
 **Tambah analis.**
 
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/7a3e1e03-a44c-440a-8a73-410055eb1a78" />
+<img height="531" alt="image" src="https://github.com/user-attachments/assets/df0b8ed2-03ec-479f-bb5f-61f53307593d" />
 
 
 **Tambah dokter.**
 
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/bf9cf0b6-4308-4981-95fe-d626e9eeed0a" />
+<img height="580" alt="image" src="https://github.com/user-attachments/assets/5e50a3a0-3545-4fa1-865c-fdf77d5b1528" />
 
 
 **Lihat semua petugas.** Pada tampilan ini terlihat hasil **overriding** dan **polymorphism**: `Analis` menampilkan spesialisasi, sedangkan `Dokter` menampilkan nomor STR. Baris kedua (umur dan jenis kelamin) muncul karena `tampilkanInfo(true)` dipanggil (overloading). Penjelasan lengkapnya ada di [bagian 5](#5-penerapan-polymorphism-dan-abstraction).
 
-<img height="252" alt="image" src="https://github.com/user-attachments/assets/21810661-f7ae-4a3f-9a03-6e699b25f546" />
-
+<img height="272" alt="image" src="https://github.com/user-attachments/assets/b37f56ad-129a-4bac-addf-8f3c6ffd65b5" />
 
 **Ubah petugas.** Program meminta ID petugas, lalu menampilkan nilai lama pada tiap kolom (nama, umur, jenis kelamin, dan No. STR untuk Dokter atau spesialisasi untuk Analis). Menekan Enter mempertahankan nilai lama. Perubahan disimpan dengan `em.merge()` di `PetugasOrmDAO`.
 
-**Hapus petugas.** Petugas dihapus berdasarkan ID dengan `em.remove()`. Petugas yang sudah tercatat pada hasil pemeriksaan tidak dapat dihapus (ditolak oleh *foreign key*) dan program menampilkan pesan penolakan.
+<img height="597" alt="image" src="https://github.com/user-attachments/assets/d3b97c48-6cc9-429c-9666-7556bd6f4acc" />
+
+
+**Hapus petugas.** Petugas dihapus berdasarkan ID.
+
+<img height="430" alt="image" src="https://github.com/user-attachments/assets/85389fbb-c553-4ac9-bbf3-730aa6147cc3" />
+
 
 ### Menu 4 - Kelola Pemeriksaan
 
 Menu ini berisi lima fitur: tambah, lihat semua, cari, ubah (nama dan biaya), dan hapus pemeriksaan. Seluruh operasi memakai **JDBC** lewat `PemeriksaanDAO`.
 
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/1d988ff6-93f9-4cdd-b66e-975602c74b5f" />
+<img width="330" height="212" alt="image" src="https://github.com/user-attachments/assets/a5e97388-3234-4430-8bb9-53e5d6276228" />
 
 **Tambah pemeriksaan.**
 
-<img height="220" alt="image" src="https://github.com/user-attachments/assets/51528dd8-c305-4305-a258-907021e290a9" />
+<img height="235" alt="image" src="https://github.com/user-attachments/assets/028af314-d33f-4a26-bd0b-d13f0387249e" />
 
 
 **Lihat semua pemeriksaan.**
 
-<img height="300" alt="image" src="https://github.com/user-attachments/assets/4df5db88-4ea8-4e59-b67d-69aafd375d37" />
+<img height="285" alt="image" src="https://github.com/user-attachments/assets/0ea4fc4d-7506-4def-a09f-6de12af46a4d" />
 
 **Cari pemeriksaan.**
 
-<img height="300" alt="image" src="https://github.com/user-attachments/assets/eecdf32a-d036-4861-ac4a-fc36a4e3faff" />
+<img height="200" alt="image" src="https://github.com/user-attachments/assets/de3e8188-d2e5-40f0-8745-632828846ea9" />
 
 **Ubah pemeriksaan.** Pada fitur ubah, program menampilkan nilai yang sedang tersimpan di dalam tanda kurung. Pengguna cukup **menekan Enter** jika tidak ingin mengubah data tersebut, sehingga nilai lama dipertahankan.
 
-```text
-Tekan Enter saja jika tidak ingin mengubah data tersebut.
-Nama Pemeriksaan Baru (Tes Darah Lengkap): [Enter]
-Biaya Baru (150000.0): 200000
-Pemeriksaan berhasil diubah.
-```
-
-Pada contoh di atas nama tetap `Tes Darah Lengkap` (karena hanya menekan Enter) dan hanya biaya yang berubah menjadi `200000.0`. Logikanya ada pada method `bacaTeksOpsional()` dan `bacaDoubleOpsional()` di Controller. Jika angka yang dimasukkan tidak valid atau negatif, nilai lama tetap dipertahankan dan program menampilkan pesan.
-
-<img height="221" alt="image" src="https://github.com/user-attachments/assets/702e4e32-8450-459b-82b5-a93731e29cf5" />
-
+<img width="551" height="468" alt="image" src="https://github.com/user-attachments/assets/fee5fc23-c03b-4808-8122-6a1397f49a1e" />
 
 **Hapus pemeriksaan.**
 
-<img height="340" alt="image" src="https://github.com/user-attachments/assets/21363670-79b8-4264-aa89-70a32d090d0c" />
+<img width="520" height="377" alt="image" src="https://github.com/user-attachments/assets/981aed27-1654-480f-8abe-d30629280db8" />
 
 
 ### Menu 5 - Kelola Hasil Pemeriksaan
@@ -321,21 +307,25 @@ Pada contoh di atas nama tetap `Tes Darah Lengkap` (karena hanya menekan Enter) 
 
 Seluruh operasi pada menu ini memakai **ORM (Hibernate)** lewat `HasilPemeriksaanOrmDAO`. Jenis pemeriksaan dan petugas pada hasil diambil dari pendaftaran terakhir (menu 1), sedangkan ID pasien diinput ulang oleh pengguna. Pada tampilan hasil, program menampilkan **nama pasien** (bukan ID pasien) beserta nama jenis tes dan nama petugas yang memeriksa, sehingga lebih mudah dibaca.
 
-<img height="200" alt="image" src="https://github.com/user-attachments/assets/71dece68-9187-43c3-b493-39cf59267399" />
+<img height="233" alt="image" src="https://github.com/user-attachments/assets/e5fc2453-8778-4b71-97a1-44f4bd03e57c" />
+
 
 **Input hasil pemeriksaan.**
 
-<img width="607" height="222" alt="image" src="https://github.com/user-attachments/assets/a49501cb-4a07-4d1c-8efa-c06c79984400" />
+<img height="307" alt="image" src="https://github.com/user-attachments/assets/1f3493b5-8c6d-48be-b3b2-010faebdcd5c" />
+
 
 
 **Lihat semua hasil.**
 
-<img height="211" alt="image" src="https://github.com/user-attachments/assets/3afbef30-0341-42e2-bddb-af30f00d275d" />
+<img height="245" alt="image" src="https://github.com/user-attachments/assets/1affbd3d-bbad-4642-829f-2c4cb24850bc" />
+
 
 
 **Lihat riwayat hasil per pasien.**
 
-<img height="217" alt="image" src="https://github.com/user-attachments/assets/26ac35f1-7321-41fb-b887-29e7ffdd49c6" />
+<img height="297" alt="image" src="https://github.com/user-attachments/assets/4f0eb784-8111-48d6-b421-0e98de128c84" />
+
 
 
 ### Validasi Input
@@ -344,16 +334,19 @@ Ketika pengguna memasukkan input yang salah (misalnya huruf pada kolom umur, ata
 
 **Contoh pada umur:**
 
-<img height="238" alt="image" src="https://github.com/user-attachments/assets/d8de3950-42b3-4a2d-aa4a-2ff7d37bacb0" />
+<img height="540" alt="image" src="https://github.com/user-attachments/assets/683747f4-23e3-4aa4-b50d-d57d3288697e" />
+
 
 **Contoh pada jenis kelamin:**
 
-<img height="241" alt="image" src="https://github.com/user-attachments/assets/28799782-3320-477a-ad4c-31e5a3560001" />
+<img height="285" alt="image" src="https://github.com/user-attachments/assets/33fa7de9-bbc7-4eb9-8e69-85d579648403" />
+
 
 
 **Contoh pada nama:**
 
-<img height="240" alt="image" src="https://github.com/user-attachments/assets/f8b80c84-664b-4b59-9c21-845f43c018a5" />
+<img height="265" alt="image" src="https://github.com/user-attachments/assets/25762d37-0b2d-4395-8b50-8c70305761a8" />
+
 
 
 ### Menu 6 - Keluar
